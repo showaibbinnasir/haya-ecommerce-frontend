@@ -1,0 +1,50 @@
+[
+    {
+        "productId" : "01",
+        "name" : "Half Sleeve Hawai Shirt",
+        "category" : "Shirt",
+        "subCategory" : "Man's Product",
+        "price" : "400",
+        "thumbnail" : "https://i.ibb.co/BzVwRL7/image1.png",
+        "images" : ["https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png"],
+        "description" : ["New Arrival: Exclusive Polo Shirt from Fantasy Fusion", "Material: Made with 100% premium cotton PK fabric", "Weight: Durable 220 GSM for lasting comfort", "Craftsmanship: Top-notch swing and collar quality", "Style & Comfort: Elevate your wardrobe with impeccable design"],
+        "addinfo" : "available size : s,m,x,xl",
+        "featuredProduct" : true
+    },
+    {
+        "productId" : "02",
+        "name" : "Half Sleeve Hawai Shirt",
+        "category" : "Shirt",
+        "subCategory" : "Man's Product",
+        "price" : "400",
+        "thumbnail" : "https://i.ibb.co/BzVwRL7/image1.png",
+        "images" : ["https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png"],
+        "description" : ["New Arrival: Exclusive Polo Shirt from Fantasy Fusion", "Material: Made with 100% premium cotton PK fabric", "Weight: Durable 220 GSM for lasting comfort", "Craftsmanship: Top-notch swing and collar quality", "Style & Comfort: Elevate your wardrobe with impeccable design"],
+        "addinfo" : "available size : s,m,x,xl",
+        "featuredProduct" : true
+    },
+    {
+        "productId" : "03",
+        "name" : "Half Sleeve Hawai Shirt",
+        "category" : "Shirt",
+        "subCategory" : "Man's Product",
+        "price" : "400",
+        "thumbnail" : "https://i.ibb.co/BzVwRL7/image1.png",
+        "images" : ["https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png"],
+        "description" : ["New Arrival: Exclusive Polo Shirt from Fantasy Fusion", "Material: Made with 100% premium cotton PK fabric", "Weight: Durable 220 GSM for lasting comfort", "Craftsmanship: Top-notch swing and collar quality", "Style & Comfort: Elevate your wardrobe with impeccable design"],
+        "addinfo" : "available size : s,m,x,xl",
+        "featuredProduct" : false
+    },
+    {
+        "productId" : "04",
+        "name" : "Half Sleeve Hawai Shirt",
+        "category" : "Shirt",
+        "subCategory" : "Man's Product",
+        "price" : "400",
+        "thumbnail" : "https://i.ibb.co/BzVwRL7/image1.png",
+        "images" : ["https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png", "https://i.ibb.co/BzVwRL7/image1.png"],
+        "description" : ["New Arrival: Exclusive Polo Shirt from Fantasy Fusion", "Material: Made with 100% premium cotton PK fabric", "Weight: Durable 220 GSM for lasting comfort", "Craftsmanship: Top-notch swing and collar quality", "Style & Comfort: Elevate your wardrobe with impeccable design"],
+        "addinfo" : "available size : s,m,x,xl",
+        "featuredProduct" : false
+    }
+]

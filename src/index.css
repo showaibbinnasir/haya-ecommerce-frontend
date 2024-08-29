@@ -1,0 +1,11 @@
+@import "keep-react/css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
