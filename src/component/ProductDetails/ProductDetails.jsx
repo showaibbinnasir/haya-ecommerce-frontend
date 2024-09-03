@@ -4,6 +4,8 @@ import {
     Carousel,
     CarouselItem,
     CarouselSlides,
+    Spinner,
+    toast,
 } from 'keep-react'
 import { useContext, useEffect, useState } from "react";
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
@@ -35,8 +37,29 @@ const ProductDetails = () => {
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
     }
+    const [isLoading, setIsLoading] = useState(false)
     const handleProduct = (product) => {
-        const cartProduct = { productId: product._id, productImage: product.thumbnail, productName: product.name, quantity: number, size: selectedOption, productPrice: product.price, totalPrice: totalPrice }
+        setIsLoading(true)
+        const cartProduct = { productId: product._id, productImage: product.thumbnail, productName: product.name, quantity: number, size: selectedOption, productPrice: product.price, totalPrice: totalPrice, customerName: user.displayName, userEmail: user.email, userPhone: userInfo[0]?.phoneNumber }
+        fetch('https://hayaecommerce-backend.vercel.app/cart', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(cartProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data?.acknowledged == true) {
+                    toast.success("Successfully added to the cart")
+                    setIsLoading(false)
+
+                } else {
+                    toast.error("Sorry! Something went wrong.")
+                    setIsLoading(false)
+
+                }
+            })
         console.log(cartProduct);
     }
     const navigate = useNavigate()
@@ -139,11 +162,18 @@ const ProductDetails = () => {
                                 {
                                     userInfo[0]?.access ?
                                         <div>
-                                            <Button onClick={() => handleProduct(data)} className="bg-white w-[350px] rounded-full text-black hover:bg-black hover:text-white" ><div className="flex items-center gap-3">
-                                                <ShoppingCart size={24} color="#4d4747" />
-                                                <h1>Add to cart</h1>
-                                            </div></Button>
-                                        </div> : 
+                                            {
+                                                isLoading ?
+                                                    <Button className="bg-white w-[350px] rounded-full text-black hover:bg-black hover:text-white" ><div className="flex items-center gap-3">
+                                                        <ShoppingCart size={24} color="#4d4747" />
+                                                        <Spinner color="info" size="lg" />
+                                                    </div></Button> :
+                                                    <Button onClick={() => handleProduct(data)} className="bg-white w-[350px] rounded-full text-black hover:bg-black hover:text-white" ><div className="flex items-center gap-3">
+                                                        <ShoppingCart size={24} color="#4d4747" />
+                                                        <h1>Add to cart</h1>
+                                                    </div></Button>
+                                            }
+                                        </div> :
                                         <h1 className="text-red-600">Your account is terminated</h1>
                                 }
                             </div> :

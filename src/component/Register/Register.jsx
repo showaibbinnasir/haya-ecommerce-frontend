@@ -1,4 +1,4 @@
-import { Envelope, Lock, } from 'phosphor-react'
+import { Envelope, Lock, Phone, } from 'phosphor-react'
 import { Button, InputIcon, Input, Label, Spinner, toast } from 'keep-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
@@ -18,22 +18,25 @@ const Register = () => {
         const email = form.email.value
         const password = form.password.value
         const name = form.name.value
+        const phoneNumber = form.phoneNumber.value
         const isAdmin = false;
+        const access = true;
         createUser(email, password)
             .then(data => {
                 console.log(data);
                 setIsLoading(false);
                 handleUpdate(name)
-                saveUser(email, name, isAdmin)
+                saveUser(email, name, isAdmin, phoneNumber, access)
                 navigate(from, { replace: true })
             })
             .catch(err => {
                 toast(err.message)
                 setIsLoading(false)
             })
+        console.log(phoneNumber);
     }
-    const saveUser = (userEmail, userName, isAdmin) => {
-        const userInfo = { userEmail, userName, isAdmin }
+    const saveUser = (userEmail, userName, isAdmin, phoneNumber,access) => {
+        const userInfo = { userEmail, userName, isAdmin, phoneNumber, access }
         fetch('https://hayaecommerce-backend.vercel.app/users', {
             method: 'POST',
             headers: {
@@ -43,12 +46,12 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data?.acknowledged == true) {
+                if (data?.acknowledged == true) {
                     toast.success("Account created successfully!")
-                    
-                }else{
+
+                } else {
                     toast.error("Sorry! Something went wrong.")
-                    
+
                 }
             })
     }
@@ -88,6 +91,16 @@ const Register = () => {
                                 </InputIcon>
                             </div>
                         </fieldset>
+                        <fieldset className="space-y-1">
+                            <Label htmlFor="name">Phone Number</Label>
+                            <div className="relative">
+                                <Input placeholder="Enter your phone number" className="ps-11" name='phoneNumber' />
+                                <InputIcon>
+                                    <Phone size={19} color="#AFBACA" />
+                                </InputIcon>
+                            </div>
+                        </fieldset>
+                        
                         <fieldset className="space-y-1">
                             <Label htmlFor="password">Password</Label>
                             <div className="relative">

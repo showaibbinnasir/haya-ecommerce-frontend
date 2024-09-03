@@ -9,6 +9,7 @@ import Account from "../component/Account/Account";
 import AllUsers from "../component/AllUsers/AllUsers";
 import AllProducts from "../component/AllProducts/AllProducts";
 import ProductsList from "../component/ProductsList/ProductsList";
+import Cart from "../component/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,17 @@ const router = createBrowserRouter([
                 path : "/productList/:subcategory",
                 element : <ProductsList></ProductsList>,
                 loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/allProducts?subcategory=${params.subcategory}`)
+            }, {
+                path : "/searchresult/:searchitem",
+                element : <ProductsList></ProductsList>,
+                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/searchresult?searchId=${params.searchitem}`)
+            }, {
+                path : "/allcategory/:category",
+                element : <ProductsList></ProductsList>,
+                loader :({params}) => fetch(`https://hayaecommerce-backend.vercel.app/allCategory?category=${params.category}`)
+            }, {
+                path : "/cart",
+                element : <PrivateRouter><Cart></Cart></PrivateRouter>
             }
         ]
     }

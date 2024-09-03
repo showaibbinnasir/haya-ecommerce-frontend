@@ -16,7 +16,7 @@ import haya from "../../assets/haya.png"
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, AvatarImage } from "keep-react"
 import { authContext } from '../../contextApi/AuthProvider'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import useAdmin from '../../hooks/useAdmin'
 const NavigationBar = () => {
     const { user, logOut } = useContext(authContext)
@@ -31,16 +31,34 @@ const NavigationBar = () => {
     const handleSubCategory = (name) => {
         navigate(`/productList/${name}`)
     }
+    const handleCategory = (name) => {
+        navigate(`/allcategory/${name}`)
+    }
+    const [isLoading, setIsLoading] = useState(false)
+    const handleSearchButton = (e) => {
+        e.preventDefault()
+        setIsLoading(true)
+        const form = e.target
+        const searchItem = form.searchitem.value
+        navigate(`/searchresult/${searchItem}`)
+        setIsLoading(false)
+    }
+    const [userInfo, setUserInfo] = useState("")
+    useEffect(() => {
+        fetch(`https://hayaecommerce-backend.vercel.app/users?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setUserInfo(data))
+    }, [user])
 
     return (
         <div className='sticky top-[-75px] lg:top-[-100px] z-50 shadow-md'>
             <div className='bg-[#CEA2A2] px-[15px] lg:px-[75px] pt-[20px]'>
                 <div className='flex justify-between'>
                     <img className='w-[70px] lg:w-[150px]' src={haya} alt="" />
-                    <div className='flex gap-2 items-center'>
-                        <Input className='w-[150px] lg:w-[450px]' placeholder="Enter name" type="text" />
-                        <Button className='bg-[black] hover:bg-white text-white hover:text-black'>Search</Button>
-                    </div>
+                    <form onSubmit={handleSearchButton} className='flex gap-2 items-center'>
+                        <Input name='searchitem' className='w-[150px] lg:w-[450px]' placeholder="Enter name" type="text" />
+                        <Button type='submit' className='bg-[black] hover:bg-white text-white hover:text-black'>Search</Button>
+                    </form>
                 </div>
             </div>
             <Navbar className='bg-[#CEA2A2] border-none'>
@@ -57,9 +75,9 @@ const NavigationBar = () => {
                             </DropdownAction>
                             <DropdownContent className='bg-[#DADADA]'>
                                 <DropdownList>
-                                    <DropdownItem><Link to="/hello">T-shirt</Link></DropdownItem>
-                                    <DropdownItem>Shirt</DropdownItem>
-                                    <DropdownItem>Pant</DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("T-shirt")} >T-shirt</h1></DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("Shirt")} >Shirt</h1></DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("Pant")} >Pant</h1></DropdownItem>
                                     <Divider />
                                     <DropdownItem>Panjabi</DropdownItem>
                                     <DropdownItem>Hoodie</DropdownItem>
@@ -97,7 +115,12 @@ const NavigationBar = () => {
                                     </DropdownAction>
                                     <DropdownContent className='bg-[#DADADA]'>
                                         <DropdownList>
-                                            <DropdownItem>Cart</DropdownItem>
+                                            {
+                                                userInfo[0]?.access ?
+                                                    <DropdownItem><Link to="/cart">Cart</Link></DropdownItem>
+                                                    : 
+                                                    <DropdownItem><Link onClick={()=> toast.error("Your account is terminated")}>Cart</Link></DropdownItem>
+                                            }
                                             <Divider />
                                             {
                                                 user ? <DropdownItem><Link to='/account'>My Account</Link></DropdownItem> : <DropdownItem><h1 onClick={handleAccount}>My Account</h1></DropdownItem>

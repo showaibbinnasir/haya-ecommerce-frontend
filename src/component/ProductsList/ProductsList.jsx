@@ -9,6 +9,16 @@ const ProductsList = () => {
     const clickHandler = (id) => {
         navigate(`/products/${id}`)
     }
+    const params = window.location.pathname;
+    // Decode the URI component to handle special characters like %20 (space)
+    const decodedPathname = decodeURIComponent(params);
+
+    // Split the path by '/'
+    const pathSegments = decodedPathname.split('/');
+
+    // Get the last segment
+    const lastParameter = pathSegments[pathSegments.length - 1];
+
     const { pathname } = useLocation();
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -16,7 +26,7 @@ const ProductsList = () => {
     document.title = "Haya | Products"
     return (
         <div>
-            <div className="text-2xl text-center my-3">Search result of : {data[0]?.subCategory}</div>
+            <div className="text-2xl text-center my-3">Search result of : {lastParameter}</div>
             {
                 data ?
                     <div className="grid grid-cols-2 lg:grid-cols-4 justify-between items-center gap-5 mx-[15px] lg:mx-[75px]">
@@ -41,10 +51,11 @@ const ProductsList = () => {
                                 </div>
                             </div>)
                         }
-                    </div> : 
+                    </div> :
                     <div> No products are available to show</div>
             }
             <Footer></Footer>
+            
         </div>
     );
 };
