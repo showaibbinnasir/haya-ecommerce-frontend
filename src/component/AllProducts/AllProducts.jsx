@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 const AllProducts = () => {
     const [featuredProducts, setFeaturedProducts] = useState([])
     // useEffect(() => {
-    //     fetch('http://localhost:5000/allProducts')
+    //     fetch('https://hayaecommerce-backend.vercel.app/allProducts')
     //         .then(res => res.json())
     //         .then(data => {
 
@@ -20,7 +20,7 @@ const AllProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allProducts`)
+            const res = await fetch(`https://hayaecommerce-backend.vercel.app/allProducts`)
             const data = await res.json();
             const featuredProductsList = data?.filter(product => product?.featuredProduct);
             setFeaturedProducts(featuredProductsList)
@@ -32,7 +32,7 @@ const AllProducts = () => {
         setFalseIsLoading(true)
         const featuredProduct = false;
         const verify = { featuredProduct };
-        fetch(`http://localhost:5000/allPost/featuredfalse/update/${id}`, {
+        fetch(`https://hayaecommerce-backend.vercel.app/allPost/featuredfalse/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -50,7 +50,7 @@ const AllProducts = () => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const handleDeleteButton = (id) => {
         setDeleteLoading(true)
-        fetch(`http://localhost:5000/postdelete/${id}`, {
+        fetch(`https://hayaecommerce-backend.vercel.app/postdelete/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -69,7 +69,7 @@ const AllProducts = () => {
         } else {
             const featuredProduct = true;
             const verify = { featuredProduct };
-            fetch(`http://localhost:5000/allPost/featuredtrue/update/${id}`, {
+            fetch(`https://hayaecommerce-backend.vercel.app/allPost/featuredtrue/update/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true)
-        fetch("http://localhost:5000/featuredProducts")
+        fetch("https://hayaecommerce-backend.vercel.app/featuredProducts")
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
@@ -54,7 +54,7 @@ const FeaturedProducts = () => {
                                             <img className="w-[350px] h-[150px] lg:h-[450px]" src={product.images[0]} alt="" />
                                             <div className="text-center">
                                                 <h1 className="text-md lg:text-2xl font-semibold text-white">{product.name.length > 10 ? product.name.substring(0, 30) + "..." : product.name}</h1>
-                                                <h1 className="text-white text-lg lg:text-3xl font-bold">{product.price}/= Taka</h1>
+                                                <h1 className="text-white text-sm lg:text-3xl font-bold">{product.price}/=</h1>
                                                 <div className="my-2">
                                                     <Button onClick={() => clickHandler(product._id)} className="bg-white rounded-full text-black font-bold hover:bg-[#CAAFAF] hover:text-white">Buy Now</Button>
                                                 </div>

@@ -21,7 +21,7 @@ const ProductDetails = () => {
     const { user } = useContext(authContext)
     const [userInfo, setUserInfo] = useState("")
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        fetch(`https://hayaecommerce-backend.vercel.app/users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [user])
@@ -41,7 +41,7 @@ const ProductDetails = () => {
     const handleProduct = (product) => {
         setIsLoading(true)
         const cartProduct = { productId: product._id, productImage: product.images[0], productName: product.name, quantity: number, size: selectedOption, productPrice: product.price, totalPrice: totalPrice, customerName: user.displayName, userEmail: user.email, userPhone: userInfo[0]?.phoneNumber, confirm: false }
-        fetch('http://localhost:5000/cart', {
+        fetch('https://hayaecommerce-backend.vercel.app/cart', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

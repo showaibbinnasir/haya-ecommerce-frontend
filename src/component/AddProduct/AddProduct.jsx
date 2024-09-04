@@ -73,7 +73,7 @@ const AddProduct = () => {
                                         imageFour = imageData.data?.url
                                         const images = [imageOne, imageTwo, imageThree, imageFour]
                                         const product = { name, category, subCategory, price, description, addinfo, images, featuredProduct }
-                                        fetch('http://localhost:5000/products', {
+                                        fetch('https://hayaecommerce-backend.vercel.app/products', {
                                             method: 'POST',
                                             headers: {
                                                 'content-type': 'application/json'
