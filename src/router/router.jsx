@@ -12,6 +12,7 @@ import ProductsList from "../component/ProductsList/ProductsList";
 import Cart from "../component/Cart/Cart";
 import Orders from "../component/Orders/Orders";
 import AllOrders from "../component/AllOrders/AllOrders";
+import AddProduct from "../component/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,9 @@ const router = createBrowserRouter([
             }, {
                 path : '/allorders',
                 element : <AllOrders></AllOrders>
+            }, {
+                path : "/addproduct",
+                element : <PrivateRouter><AddProduct></AddProduct></PrivateRouter>
             }
         ]
     }

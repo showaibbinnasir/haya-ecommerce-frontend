@@ -77,7 +77,7 @@ const Account = () => {
             }
             {
                 isAdmin && <div className="flex justify-center">
-                    <div className="mt-5 bg-[#CEA2A2] hover:bg-gray-500 rounded-lg w-[450px]">
+                    <div onClick={()=>navigate('/addproduct')} className="mt-5 bg-[#CEA2A2] hover:bg-gray-500 rounded-lg w-[450px]">
                         <div className="flex gap-3 items-center text-white p-3">
                             <FilePlus size={32} color="#e3e3e3" />
                             <h1 className="font-semibold">Add Products</h1>
