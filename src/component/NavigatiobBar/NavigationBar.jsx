@@ -75,14 +75,14 @@ const NavigationBar = () => {
                             </DropdownAction>
                             <DropdownContent className='bg-[#DADADA]'>
                                 <DropdownList>
-                                    <DropdownItem><h1 onClick={() => handleCategory("T-shirt")} >T-shirt</h1></DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("T-Shirt")} >T-shirt</h1></DropdownItem>
                                     <DropdownItem><h1 onClick={() => handleCategory("Shirt")} >Shirt</h1></DropdownItem>
                                     <DropdownItem><h1 onClick={() => handleCategory("Pant")} >Pant</h1></DropdownItem>
                                     <Divider />
-                                    <DropdownItem>Panjabi</DropdownItem>
-                                    <DropdownItem>Hoodie</DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("Panjabi")} >Panjabi</h1></DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("Hoodie")} >Hoodie</h1></DropdownItem>
                                     <Divider />
-                                    <DropdownItem>Joggers</DropdownItem>
+                                    <DropdownItem><h1 onClick={() => handleCategory("Joggers")} >Joggers</h1></DropdownItem>
                                 </DropdownList>
                             </DropdownContent>
                         </Dropdown>
