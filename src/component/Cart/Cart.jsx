@@ -13,7 +13,7 @@ const Cart = () => {
     const { data: cartData = [], refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`https://hayaecommerce-backend.vercel.app/cart?email=${user.email}`)
+            const res = await fetch(`http://localhost:5000/cart?email=${user.email}`)
             const data = await res.json();
             return data;
         }
@@ -22,7 +22,7 @@ const Cart = () => {
     const [isLoading, setIsLoading] = useState(false)
     const handleDeleteButton = (id) => {
         setIsLoading(true)
-        fetch(`https://hayaecommerce-backend.vercel.app/deletecart/${id}`, {
+        fetch(`http://localhost:5000/deletecart/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -34,7 +34,7 @@ const Cart = () => {
     }
     const handleOrder = () => {
         const data = cartData.map(({ _id, ...rest }) => rest);
-        fetch('https://hayaecommerce-backend.vercel.app/orders', {
+        fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

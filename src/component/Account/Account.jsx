@@ -10,16 +10,24 @@ const Account = () => {
     const signingOut = () => {
         logOut();
     }
-    
+
     const [userInfo, setUserInfo] = useState("")
     useEffect(() => {
-        fetch(`https://hayaecommerce-backend.vercel.app/users?email=${user?.email}`)
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [user])
     const navigate = useNavigate()
     const handleNavigate = () => {
         navigate('/allProducts')
+        location.reload()
+    }
+    const handleMyOrder = () => {
+        navigate("/orders")
+        location.reload()
+    }
+    const handleAllOrder = () => {
+        navigate("/allorders")
         location.reload()
     }
     const [isAdmin] = useAdmin(user?.email)
@@ -46,15 +54,27 @@ const Account = () => {
                         </div>
                     </div>
             }
-            <div className="flex justify-center">
-                <div className="mt-5 bg-[#CEA2A2] hover:bg-gray-500 rounded-lg w-[450px]">
-                    <div className="flex gap-3 items-center text-white p-3">
-                        <Bag size={32} color="#fcfcfc" />
-                        <h1 className="font-semibold">My Orders</h1>
-                    </div>
+            {
+                isAdmin ?
+                    <div className="flex justify-center">
+                        <div className="mt-5 bg-[#CEA2A2] hover:bg-gray-500 rounded-lg w-[450px]">
+                            <div className="flex gap-3 items-center text-white p-3">
+                                <Bag size={32} color="#fcfcfc" />
+                                <h1 onClick={handleAllOrder} className="font-semibold">All Orders</h1>
+                            </div>
 
-                </div>
-            </div>
+                        </div>
+                    </div> :
+                    <div className="flex justify-center">
+                        <div className="mt-5 bg-[#CEA2A2] hover:bg-gray-500 rounded-lg w-[450px]">
+                            <div className="flex gap-3 items-center text-white p-3">
+                                <Bag size={32} color="#fcfcfc" />
+                                <h1 onClick={handleMyOrder} className="font-semibold">My Orders</h1>
+                            </div>
+
+                        </div>
+                    </div>
+            }
             {
                 isAdmin && <div className="flex justify-center">
                     <div className="mt-5 bg-[#CEA2A2] hover:bg-gray-500 rounded-lg w-[450px]">

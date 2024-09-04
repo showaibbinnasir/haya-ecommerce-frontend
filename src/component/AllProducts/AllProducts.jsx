@@ -1,14 +1,12 @@
 import { Button, Spinner, toast } from "keep-react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
-import { authContext } from "../../contextApi/AuthProvider";
+
 
 const AllProducts = () => {
-    // const [products, setProducts] = useState("")
-    const { user } = useContext(authContext)
     const [featuredProducts, setFeaturedProducts] = useState([])
     // useEffect(() => {
-    //     fetch('https://hayaecommerce-backend.vercel.app/allProducts')
+    //     fetch('http://localhost:5000/allProducts')
     //         .then(res => res.json())
     //         .then(data => {
 
@@ -19,10 +17,10 @@ const AllProducts = () => {
     //         })
     // }, [products])
     document.title = "Haya | All Products"
-    const { data: products = [], refetch, isLoading } = useQuery({
+    const { data: products = [], refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`https://hayaecommerce-backend.vercel.app/allProducts`)
+            const res = await fetch(`http://localhost:5000/allProducts`)
             const data = await res.json();
             const featuredProductsList = data?.filter(product => product?.featuredProduct);
             setFeaturedProducts(featuredProductsList)
@@ -34,7 +32,7 @@ const AllProducts = () => {
         setFalseIsLoading(true)
         const featuredProduct = false;
         const verify = { featuredProduct };
-        fetch(`https://hayaecommerce-backend.vercel.app/allPost/featuredfalse/update/${id}`, {
+        fetch(`http://localhost:5000/allPost/featuredfalse/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -49,15 +47,29 @@ const AllProducts = () => {
                 refetch()
             })
     }
+    const [deleteLoading, setDeleteLoading] = useState(false)
+    const handleDeleteButton = (id) => {
+        setDeleteLoading(true)
+        fetch(`http://localhost:5000/postdelete/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                refetch()
+                setDeleteLoading(false)
+                toast.success("Deleted successfully!")
+            })
+    }
     const [trueIsLoaing, setTrueIsLoading] = useState(false)
     const handleFeaturedTrue = id => {
         setTrueIsLoading(true)
         if (featuredProducts?.length >= 4) {
             toast.error("You have reached to the maximum level of featured products!")
+            setTrueIsLoading(false)
         } else {
             const featuredProduct = true;
             const verify = { featuredProduct };
-            fetch(`https://hayaecommerce-backend.vercel.app/allPost/featuredtrue/update/${id}`, {
+            fetch(`http://localhost:5000/allPost/featuredtrue/update/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -73,6 +85,7 @@ const AllProducts = () => {
                 })
         }
     }
+
 
 
     return (
@@ -98,16 +111,20 @@ const AllProducts = () => {
                                             <h1 className="text-white text-lg lg:text-3xl font-bold">{product?.price}/= Taka</h1>
                                             <div className="my-2 flex justify-center">
                                                 <div className="flex flex-col lg:flex-row gap-2">
-                                                    <Button className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white">Delete Post</Button>
+                                                    {
+                                                        deleteLoading ?
+                                                            <Button className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white"><Spinner color="info" size="lg" /></Button> :
+                                                            <Button onClick={() => handleDeleteButton(product?._id)} className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white">Delete Post</Button>
+                                                    }
                                                     <Button className="bg-black rounded-full text-white font-bold hover:bg-white hover:text-black">Edit Post</Button>
                                                     {
                                                         product?.featuredProduct &&
-                                                        product?.featuredProduct ?
+                                                            product?.featuredProduct ?
                                                             falseIsLoading ?
                                                                 <Button className="bg-white rounded-full text-black font-bold hover:bg-black hover:text-white"><Spinner color="info" size="lg" /></Button> :
                                                                 <Button onClick={() => handleFeaturedFalse(product?._id)} className="bg-white rounded-full text-black font-bold hover:bg-black hover:text-white">Featured</Button> :
                                                             trueIsLoaing ?
-                                                                <Button className="bg-cyan-400 rounded-full text-white font-bold hover:bg-white hover:text-black"><Spinner color="info" size="lg" /></Button> : 
+                                                                <Button className="bg-cyan-400 rounded-full text-white font-bold hover:bg-white hover:text-black"><Spinner color="info" size="lg" /></Button> :
                                                                 <Button onClick={() => handleFeaturedTrue(product?._id)} className="bg-cyan-400 rounded-full text-white font-bold hover:bg-white hover:text-black">Feature</Button>
                                                     }
 

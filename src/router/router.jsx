@@ -10,6 +10,8 @@ import AllUsers from "../component/AllUsers/AllUsers";
 import AllProducts from "../component/AllProducts/AllProducts";
 import ProductsList from "../component/ProductsList/ProductsList";
 import Cart from "../component/Cart/Cart";
+import Orders from "../component/Orders/Orders";
+import AllOrders from "../component/AllOrders/AllOrders";
 
 const router = createBrowserRouter([
     {
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path : "/products/:id",
                 element: <ProductDetails></ProductDetails>,
-                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/products/${params.id}`)
+                loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
                 path: "/login",
@@ -44,18 +46,24 @@ const router = createBrowserRouter([
             },{
                 path : "/productList/:subcategory",
                 element : <ProductsList></ProductsList>,
-                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/allProducts?subcategory=${params.subcategory}`)
+                loader : ({params}) => fetch(`http://localhost:5000/allProducts?subcategory=${params.subcategory}`)
             }, {
                 path : "/searchresult/:searchitem",
                 element : <ProductsList></ProductsList>,
-                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/searchresult?searchId=${params.searchitem}`)
+                loader : ({params}) => fetch(`http://localhost:5000/searchresult?searchId=${params.searchitem}`)
             }, {
                 path : "/allcategory/:category",
                 element : <ProductsList></ProductsList>,
-                loader :({params}) => fetch(`https://hayaecommerce-backend.vercel.app/allCategory?category=${params.category}`)
+                loader :({params}) => fetch(`http://localhost:5000/allCategory?category=${params.category}`)
             }, {
                 path : "/cart",
                 element : <PrivateRouter><Cart></Cart></PrivateRouter>
+            }, {
+                path : "/orders",
+                element : <PrivateRouter><Orders></Orders></PrivateRouter>
+            }, {
+                path : '/allorders',
+                element : <AllOrders></AllOrders>
             }
         ]
     }

@@ -6,14 +6,14 @@ import { useQuery } from "react-query";
 const AllUsers = () => {
     // const [userList, setUserList] = useState("")
     // useEffect(() => {
-    //     fetch("https://hayaecommerce-backend.vercel.app/users")
+    //     fetch("http://localhost:5000/users")
     //         .then(res => res.json())
     //         .then(data => setUserList(data))
     // }, [])
     const { data: userList = [], refetch, isLoading } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`https://hayaecommerce-backend.vercel.app/users`)
+            const res = await fetch(`http://localhost:5000/users`)
             const data = await res.json();
             return data;
         }
@@ -24,7 +24,7 @@ const AllUsers = () => {
         setBlockLoading(true)
         const isBlocked = false;
         const verify = { isBlocked };
-        fetch(`https://hayaecommerce-backend.vercel.app/allUser/blockUser/update/${id}`, {
+        fetch(`http://localhost:5000/allUser/blockUser/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +44,7 @@ const AllUsers = () => {
         setUnblockLoading(true)
         const isBlocked = true;
         const verify = { isBlocked };
-        fetch(`https://hayaecommerce-backend.vercel.app/allUser/unblockUser/update/${id}`, {
+        fetch(`http://localhost:5000/allUser/unblockUser/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

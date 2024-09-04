@@ -45,7 +45,7 @@ const NavigationBar = () => {
     }
     const [userInfo, setUserInfo] = useState("")
     useEffect(() => {
-        fetch(`https://hayaecommerce-backend.vercel.app/users?email=${user?.email}`)
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [user])
@@ -54,7 +54,7 @@ const NavigationBar = () => {
         <div className='sticky top-[-75px] lg:top-[-100px] z-50 shadow-md'>
             <div className='bg-[#CEA2A2] px-[15px] lg:px-[75px] pt-[20px]'>
                 <div className='flex justify-between'>
-                    <img className='w-[70px] lg:w-[150px]' src={haya} alt="" />
+                    <img onClick={()=>navigate("/")} className='w-[70px] lg:w-[150px]' src={haya} alt="" />
                     <form onSubmit={handleSearchButton} className='flex gap-2 items-center'>
                         <Input name='searchitem' className='w-[150px] lg:w-[450px]' placeholder="Enter name" type="text" />
                         <Button type='submit' className='bg-[black] hover:bg-white text-white hover:text-black'>Search</Button>
