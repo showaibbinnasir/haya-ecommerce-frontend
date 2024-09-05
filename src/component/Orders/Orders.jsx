@@ -28,7 +28,7 @@ const Orders = () => {
                             <div>
                                 <img className="w-[350px] h-[150px] md:h-[450px] lg:h-[450px]" src={product?.productImage} alt="" />
                                 <div className="text-center">
-                                    <h1 className="text-md lg:text-2xl font-semibold text-white">{product?.productName.length > 10 ? product?.productName.substring(0, 30) + "..." : product?.productName}</h1>
+                                    <h1 className="text-sm my-1 lg:text-2xl font-semibold text-white">{product?.productName.length > 10 ? product?.productName.substring(0, 20) + "..." : product?.productName}</h1>
                                     <h1 className="text-white text-lg lg:text-3xl font-bold">{product?.productPrice}/= Taka</h1>
                                     <h1 className="text-white text-lg lg:text-xl font-bold">Quantity : {product?.quantity}</h1>
                                     <h1 className="text-white text-lg lg:text-xl font-bold">Total : {product?.totalPrice}</h1>

@@ -53,7 +53,7 @@ const FeaturedProducts = () => {
                                         <div>
                                             <img className="w-[350px] h-[150px] md:h-[450px] lg:h-[450px]" src={product.images[0]} alt="" />
                                             <div className="text-center">
-                                                <h1 className="text-md lg:text-2xl font-semibold text-white">{product.name.length > 10 ? product.name.substring(0, 30) + "..." : product.name}</h1>
+                                                <h1 className="text-sm my-1 lg:text-2xl font-semibold text-white">{product.name.length > 10 ? product.name.substring(0, 20) + "..." : product.name}</h1>
                                                 <h1 className="text-white text-sm lg:text-3xl font-bold">{product.price}/=</h1>
                                                 <div className="my-2">
                                                     <Button onClick={() => clickHandler(product._id)} className="bg-white rounded-full text-black font-bold hover:bg-[#CAAFAF] hover:text-white">Buy Now</Button>
