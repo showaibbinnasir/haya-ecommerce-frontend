@@ -8,7 +8,7 @@ const LatestProducts = () => {
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true)
-        fetch("http://localhost:5000/latestProducts")
+        fetch("https://hayaecommerce-backend.vercel.app/latestProducts")
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)

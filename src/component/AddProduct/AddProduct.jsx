@@ -73,7 +73,7 @@ const AddProduct = () => {
                                         imageFour = imageData.data?.url
                                         const images = [imageOne, imageTwo, imageThree, imageFour]
                                         const product = { name, category, subCategory, price, description, addinfo, images, featuredProduct }
-                                        fetch('http://localhost:5000/products', {
+                                        fetch('https://hayaecommerce-backend.vercel.app/products', {
                                             method: 'POST',
                                             headers: {
                                                 'content-type': 'application/json'
@@ -132,7 +132,7 @@ const AddProduct = () => {
                                     <span className="label-text">Product Category</span>
                                 </label>
                                 <select required name='cat' className="w-full h-[40px] rounded-lg">
-                                    <option disabled selected>T-Shirt</option>
+                                    <option selected>T-Shirt</option>
                                     <option>Shirt</option>
                                     <option>Pant</option>
                                     <option>Panjabi</option>
@@ -145,7 +145,7 @@ const AddProduct = () => {
                                     <span className="label-text">Product Sub-Category</span>
                                 </label>
                                 <select required name='subcat' className="w-full h-[40px] rounded-lg">
-                                    <option disabled selected>Man's Product</option>
+                                    <option selected>Man's Product</option>
                                     <option>Woman's Product</option>
                                     <option>Kid's Product</option>
                                 </select>

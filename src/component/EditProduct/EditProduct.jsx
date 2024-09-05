@@ -22,7 +22,7 @@ const EditProduct = () => {
         const addinfo = form.addinfo.value
         const id = data._id
         const product = { name, category, subCategory, price, description, addinfo }
-        fetch(`http://localhost:5000/product/update/${id}`, {
+        fetch(`https://hayaecommerce-backend.vercel.app/product/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -57,7 +57,7 @@ const EditProduct = () => {
                                     <span className="label-text">Product Category</span>
                                 </label>
                                 <select required defaultValue={data?.category} name='cat' className="w-full h-[40px] rounded-lg">
-                                    <option disabled selected>T-Shirt</option>
+                                    <option selected>T-Shirt</option>
                                     <option>Shirt</option>
                                     <option>Pant</option>
                                     <option>Panjabi</option>
@@ -70,7 +70,7 @@ const EditProduct = () => {
                                     <span className="label-text">Product Sub-Category</span>
                                 </label>
                                 <select defaultValue={data?.subCategory} required name='subcat' className="w-full h-[40px] rounded-lg">
-                                    <option disabled selected>Man's Product</option>
+                                    <option selected>Man's Product</option>
                                     <option>Woman's Product</option>
                                     <option>Kid's Product</option>
                                 </select>

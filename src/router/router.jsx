@@ -27,7 +27,7 @@ const router = createBrowserRouter([
             {
                 path : "/products/:id",
                 element: <ProductDetails></ProductDetails>,
-                loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/products/${params.id}`)
             },
             {
                 path: "/login",
@@ -48,15 +48,15 @@ const router = createBrowserRouter([
             },{
                 path : "/productList/:subcategory",
                 element : <ProductsList></ProductsList>,
-                loader : ({params}) => fetch(`http://localhost:5000/allProducts?subcategory=${params.subcategory}`)
+                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/allProducts?subcategory=${params.subcategory}`)
             }, {
                 path : "/searchresult/:searchitem",
                 element : <ProductsList></ProductsList>,
-                loader : ({params}) => fetch(`http://localhost:5000/searchresult?searchId=${params.searchitem}`)
+                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/searchresult?searchId=${params.searchitem}`)
             }, {
                 path : "/allcategory/:category",
                 element : <ProductsList></ProductsList>,
-                loader :({params}) => fetch(`http://localhost:5000/allCategory?category=${params.category}`)
+                loader :({params}) => fetch(`https://hayaecommerce-backend.vercel.app/allCategory?category=${params.category}`)
             }, {
                 path : "/cart",
                 element : <PrivateRouter><Cart></Cart></PrivateRouter>
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
             }, {
                 path : "/editpost/:id",
                 element :<PrivateRouter><EditProduct></EditProduct></PrivateRouter>,
-                loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/products/${params.id}`)
             }
         ]
     }

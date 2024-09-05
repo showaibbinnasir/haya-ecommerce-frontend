@@ -7,7 +7,7 @@ const AllOrders = () => {
     const { data: ordata = [],refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allorders`)
+            const res = await fetch(`https://hayaecommerce-backend.vercel.app/allorders`)
             const data = await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const AllOrders = () => {
     const handleDeliverButton = (id) => {
         const confirm = true;
             const verify = { confirm };
-            fetch(`http://localhost:5000/deliver/update/${id}`, {
+            fetch(`https://hayaecommerce-backend.vercel.app/deliver/update/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

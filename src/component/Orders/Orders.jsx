@@ -9,7 +9,7 @@ const Orders = () => {
     const { data: ordata = [] } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allorders?mail=${user.email}`)
+            const res = await fetch(`https://hayaecommerce-backend.vercel.app/allorders?mail=${user.email}`)
             const data = await res.json();
             return data;
         }

@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true)
-        fetch("http://localhost:5000/featuredProducts")
+        fetch("https://hayaecommerce-backend.vercel.app/featuredProducts")
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
