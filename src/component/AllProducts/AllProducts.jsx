@@ -1,12 +1,13 @@
 import { Button, Spinner, toast } from "keep-react";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 
 const AllProducts = () => {
     const [featuredProducts, setFeaturedProducts] = useState([])
     // useEffect(() => {
-    //     fetch('https://hayaecommerce-backend.vercel.app/allProducts')
+    //     fetch('http://localhost:5000/allProducts')
     //         .then(res => res.json())
     //         .then(data => {
 
@@ -20,7 +21,7 @@ const AllProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`https://hayaecommerce-backend.vercel.app/allProducts`)
+            const res = await fetch(`http://localhost:5000/allProducts`)
             const data = await res.json();
             const featuredProductsList = data?.filter(product => product?.featuredProduct);
             setFeaturedProducts(featuredProductsList)
@@ -32,7 +33,7 @@ const AllProducts = () => {
         setFalseIsLoading(true)
         const featuredProduct = false;
         const verify = { featuredProduct };
-        fetch(`https://hayaecommerce-backend.vercel.app/allPost/featuredfalse/update/${id}`, {
+        fetch(`http://localhost:5000/allPost/featuredfalse/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -50,7 +51,7 @@ const AllProducts = () => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const handleDeleteButton = (id) => {
         setDeleteLoading(true)
-        fetch(`https://hayaecommerce-backend.vercel.app/postdelete/${id}`, {
+        fetch(`http://localhost:5000/postdelete/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -69,7 +70,7 @@ const AllProducts = () => {
         } else {
             const featuredProduct = true;
             const verify = { featuredProduct };
-            fetch(`https://hayaecommerce-backend.vercel.app/allPost/featuredtrue/update/${id}`, {
+            fetch(`http://localhost:5000/allPost/featuredtrue/update/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -85,7 +86,7 @@ const AllProducts = () => {
                 })
         }
     }
-
+    const navigate = useNavigate()
 
 
     return (
@@ -105,7 +106,7 @@ const AllProducts = () => {
                                 products &&
                                 products?.map((product, i) => <div className={product?.featuredProduct ? 'bg-green-600 p-8 rounded-xl' : 'bg-[#CAAFAF] p-8 rounded-xl'} key={i}>
                                     <div>
-                                        <img className="w-[350px] h-[150px] lg:h-[450px]" src={product?.images[0]} alt="" />
+                                        <img className="w-[350px] h-[150px] md:h-[450px] lg:h-[450px]" src={product?.images[0]} alt="" />
                                         <div className="text-center">
                                             <h1 className="text-md lg:text-2xl font-semibold text-white">{product?.name.length > 10 ? product?.name.substring(0, 30) + "..." : product?.name}</h1>
                                             <h1 className="text-white text-lg lg:text-3xl font-bold">{product?.price}/= Taka</h1>
@@ -116,7 +117,7 @@ const AllProducts = () => {
                                                             <Button className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white"><Spinner color="info" size="lg" /></Button> :
                                                             <Button onClick={() => handleDeleteButton(product?._id)} className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white">Delete Post</Button>
                                                     }
-                                                    <Button className="bg-black rounded-full text-white font-bold hover:bg-white hover:text-black">Edit Post</Button>
+                                                    <Button onClick={()=> navigate(`/editpost/${product?._id}`)} className="bg-black rounded-full text-white font-bold hover:bg-white hover:text-black">Edit Post</Button>
                                                     {
                                                         product?.featuredProduct &&
                                                             product?.featuredProduct ?

@@ -8,7 +8,7 @@ const LatestProducts = () => {
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true)
-        fetch("https://hayaecommerce-backend.vercel.app/latestProducts")
+        fetch("http://localhost:5000/latestProducts")
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
@@ -48,7 +48,7 @@ const LatestProducts = () => {
                                     latestProducts &&
                                     latestProducts.map((product, i) => <div className="bg-[#CAAFAF] p-8 rounded-xl" key={i}>
                                         <div>
-                                            <img className="w-[350px] h-[150px] lg:h-[450px]" src={product.images[0]} alt="" />
+                                            <img className="w-[350px] h-[150px] md:h-[450px] lg:h-[450px]" src={product.images[0]} alt="" />
                                             <div className="text-center">
                                                 <h1 className="text-md lg:text-2xl font-semibold text-white">{product.name.length > 10 ? product.name.substring(0, 30) + "..." : product.name}</h1>
                                                 <h1 className="text-white text-sm lg:text-3xl font-bold">{product.price}/=</h1>

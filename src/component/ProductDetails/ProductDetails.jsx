@@ -21,7 +21,7 @@ const ProductDetails = () => {
     const { user } = useContext(authContext)
     const [userInfo, setUserInfo] = useState("")
     useEffect(() => {
-        fetch(`https://hayaecommerce-backend.vercel.app/users?email=${user?.email}`)
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [user])
@@ -41,7 +41,7 @@ const ProductDetails = () => {
     const handleProduct = (product) => {
         setIsLoading(true)
         const cartProduct = { productId: product._id, productImage: product.images[0], productName: product.name, quantity: number, size: selectedOption, productPrice: product.price, totalPrice: totalPrice, customerName: user.displayName, userEmail: user.email, userPhone: userInfo[0]?.phoneNumber, confirm: false }
-        fetch('https://hayaecommerce-backend.vercel.app/cart', {
+        fetch('http://localhost:5000/cart', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -82,7 +82,7 @@ const ProductDetails = () => {
                                 images.map((slide, i) => (
                                     <CarouselItem key={i} className="flex lg:flex-[0_0_50%]">
                                         <div className="flex items-center justify-center rounded-xl border border-metal-100 bg-metal-50 w-full h-[250px] lg:h-[750px] dark:border-metal-900 dark:bg-metal-900">
-                                            <img className="w-[350px] h-[250px] lg:h-[450px]" src={slide} alt="" />
+                                            <img className="w-[350px] h-[250px] md:h-[450px] lg:h-[450px]" src={slide} alt="" />
                                         </div>
                                     </CarouselItem>
                                 ))}

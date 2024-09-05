@@ -9,7 +9,7 @@ const Orders = () => {
     const { data: ordata = [] } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`https://hayaecommerce-backend.vercel.app/allorders?mail=${user.email}`)
+            const res = await fetch(`http://localhost:5000/allorders?mail=${user.email}`)
             const data = await res.json();
             return data;
         }
@@ -26,7 +26,7 @@ const Orders = () => {
                         ordata &&
                         ordata?.map((product, i) => <div className={product?.confirm ? 'bg-green-600 p-8 rounded-xl' : 'bg-[#CAAFAF] p-8 rounded-xl'} key={i}>
                             <div>
-                                <img className="w-[350px] h-[150px] lg:h-[450px]" src={product?.productImage} alt="" />
+                                <img className="w-[350px] h-[150px] md:h-[450px] lg:h-[450px]" src={product?.productImage} alt="" />
                                 <div className="text-center">
                                     <h1 className="text-md lg:text-2xl font-semibold text-white">{product?.productName.length > 10 ? product?.productName.substring(0, 30) + "..." : product?.productName}</h1>
                                     <h1 className="text-white text-lg lg:text-3xl font-bold">{product?.productPrice}/= Taka</h1>

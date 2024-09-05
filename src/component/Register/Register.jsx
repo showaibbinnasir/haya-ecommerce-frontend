@@ -37,7 +37,7 @@ const Register = () => {
     }
     const saveUser = (userEmail, userName, isAdmin, phoneNumber,access) => {
         const userInfo = { userEmail, userName, isAdmin, phoneNumber, access }
-        fetch('https://hayaecommerce-backend.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
