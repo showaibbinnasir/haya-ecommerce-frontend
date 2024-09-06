@@ -73,6 +73,10 @@ const router = createBrowserRouter([
                 path : "/editpost/:id",
                 element :<PrivateRouter><EditProduct></EditProduct></PrivateRouter>,
                 loader : ({params}) => fetch(`https://hayaecommerce-backend.vercel.app/products/${params.id}`)
+            }, {
+                path : "/products",
+                element : <ProductsList></ProductsList>,
+                loader : () => fetch('https://hayaecommerce-backend.vercel.app/allProducts')
             }
         ]
     }

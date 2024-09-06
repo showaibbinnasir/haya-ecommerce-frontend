@@ -63,6 +63,9 @@ const LatestProducts = () => {
                         </div>
                     </div>
             }
+            <div className="flex justify-center my-5">
+                <Button onClick={()=>navigate('/products')} className="w-[200px] bg-black text-white hover:bg-white hover:text-black animate-pulse">See All</Button>
+            </div>
         </div>
     );
 };

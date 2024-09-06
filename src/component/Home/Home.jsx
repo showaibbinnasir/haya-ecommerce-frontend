@@ -1,4 +1,5 @@
 import banner from "../../assets/banner.png"
+import CategorySection from "../CategorySection/CategorySection";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import Footer from "../Footer/Footer";
 import LatestProducts from "../LatestProducts/LatestProducts";
@@ -11,6 +12,7 @@ const Home = () => {
             </div>
             <FeaturedProducts></FeaturedProducts>
             <LatestProducts></LatestProducts>
+            <CategorySection></CategorySection>
             <Footer></Footer>
         </div>
     );
