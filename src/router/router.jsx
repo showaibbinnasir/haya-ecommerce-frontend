@@ -14,11 +14,14 @@ import Orders from "../component/Orders/Orders";
 import AllOrders from "../component/AllOrders/AllOrders";
 import AddProduct from "../component/AddProduct/AddProduct";
 import EditProduct from "../component/EditProduct/EditProduct";
+import Contact from "../component/Contact/Contact";
+import ErrorComp from "../component/ErrorComp/ErrorComp";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout></Layout>,
+        errorElement: <ErrorComp></ErrorComp> ,
         children: [
             {
                 path: "/",
@@ -77,6 +80,9 @@ const router = createBrowserRouter([
                 path : "/products",
                 element : <ProductsList></ProductsList>,
                 loader : () => fetch('https://hayaecommerce-backend.vercel.app/allProducts')
+            }, {
+                path : '/contact',
+                element : <Contact></Contact>
             }
         ]
     }

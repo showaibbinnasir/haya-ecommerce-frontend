@@ -54,7 +54,7 @@ const NavigationBar = () => {
         <div className='sticky top-[-75px] lg:top-[-100px] z-50 shadow-md'>
             <div className='bg-[#CEA2A2] px-[15px] lg:px-[75px] pt-[20px]'>
                 <div className='flex justify-between'>
-                    <img onClick={()=>navigate("/")} className='w-[70px] lg:w-[150px]' src={haya} alt="" />
+                    <img onClick={() => navigate("/")} className='w-[70px] lg:w-[150px]' src={haya} alt="" />
                     <form onSubmit={handleSearchButton} className='flex gap-2 items-center'>
                         <Input name='searchitem' className='w-[150px] lg:w-[450px]' placeholder="Enter name" type="text" />
                         <Button type='submit' className='bg-[black] hover:bg-white text-white hover:text-black'>Search</Button>
@@ -90,7 +90,7 @@ const NavigationBar = () => {
                         <NavbarItem className='text-white'><h1 onClick={() => handleSubCategory("Woman's Product")}>Woman's Product</h1></NavbarItem>
 
                         <NavbarItem className='text-white'><h1 onClick={() => handleSubCategory("Kid's Product")}>Kid's Product</h1></NavbarItem>
-                        <NavbarItem className='text-white'>Contact</NavbarItem>
+                        <NavbarItem className='text-black'><h1 onClick={()=>navigate('/contact')} className='text-white'>Contact</h1></NavbarItem>
                     </NavbarList>
                     <div>
                         <NavbarBrand className='mx-5'>
@@ -118,8 +118,8 @@ const NavigationBar = () => {
                                             {
                                                 userInfo[0]?.access ?
                                                     <DropdownItem><Link to="/cart">Cart</Link></DropdownItem>
-                                                    : 
-                                                    <DropdownItem><Link onClick={()=> toast.error("Your account is terminated")}>Cart</Link></DropdownItem>
+                                                    :
+                                                    <DropdownItem><Link onClick={() => toast.error("Your account is terminated")}>Cart</Link></DropdownItem>
                                             }
                                             <Divider />
                                             {
@@ -147,14 +147,16 @@ const NavigationBar = () => {
                             </DropdownAction>
                             <DropdownContent className='bg-white'>
                                 <DropdownList className='z-50'>
-                                    <DropdownItem><Link to="/hello">T-shirt</Link></DropdownItem>
-                                    <DropdownItem>Shirt</DropdownItem>
-                                    <DropdownItem>Pant</DropdownItem>
-                                    <Divider />
-                                    <DropdownItem>Panjabi</DropdownItem>
-                                    <DropdownItem>Hoodie</DropdownItem>
-                                    <Divider />
-                                    <DropdownItem>Joggers</DropdownItem>
+                                    <DropdownList>
+                                        <DropdownItem><h1 onClick={() => handleCategory("T-Shirt")} >T-shirt</h1></DropdownItem>
+                                        <DropdownItem><h1 onClick={() => handleCategory("Shirt")} >Shirt</h1></DropdownItem>
+                                        <DropdownItem><h1 onClick={() => handleCategory("Pant")} >Pant</h1></DropdownItem>
+                                        <Divider />
+                                        <DropdownItem><h1 onClick={() => handleCategory("Panjabi")} >Panjabi</h1></DropdownItem>
+                                        <DropdownItem><h1 onClick={() => handleCategory("Hoodie")} >Hoodie</h1></DropdownItem>
+                                        <Divider />
+                                        <DropdownItem><h1 onClick={() => handleCategory("Joggers")} >Joggers</h1></DropdownItem>
+                                    </DropdownList>
                                 </DropdownList>
                             </DropdownContent>
                         </Dropdown>
@@ -163,7 +165,7 @@ const NavigationBar = () => {
                         <NavbarItem className='text-black'><h1 onClick={() => handleSubCategory("Woman's Product")}>Woman's Product</h1></NavbarItem>
                         <NavbarItem className='text-black'><h1 onClick={() => handleSubCategory("Kid's Product")}>Kid's Product</h1></NavbarItem>
                         <NavbarItem className='text-black'></NavbarItem>
-                        <NavbarItem className='text-black'>Contact</NavbarItem>
+                        <NavbarItem className='text-black'><h1 onClick={()=>navigate('/contact')} className=''>Contact</h1></NavbarItem>
                     </NavbarCollapse>
                 </NavbarContainer>
             </Navbar>
