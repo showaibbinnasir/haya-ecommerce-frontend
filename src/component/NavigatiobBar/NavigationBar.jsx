@@ -56,7 +56,7 @@ const NavigationBar = () => {
                 <div className='flex justify-between'>
                     <img onClick={() => navigate("/")} className='w-[70px] lg:w-[150px]' src={haya} alt="" />
                     <form onSubmit={handleSearchButton} className='flex gap-2 items-center'>
-                        <Input name='searchitem' className='w-[150px] lg:w-[450px]' placeholder="Enter name" type="text" />
+                        <Input name='searchitem' className='w-[150px] lg:w-[450px]' placeholder="Search Product" type="text" />
                         <Button type='submit' className='bg-[black] hover:bg-white text-white hover:text-black'>Search</Button>
                     </form>
                 </div>
@@ -75,14 +75,14 @@ const NavigationBar = () => {
                             </DropdownAction>
                             <DropdownContent className='bg-[#DADADA]'>
                                 <DropdownList>
-                                    <DropdownItem><h1 onClick={() => handleCategory("T-Shirt")} >T-shirt</h1></DropdownItem>
-                                    <DropdownItem><h1 onClick={() => handleCategory("Shirt")} >Shirt</h1></DropdownItem>
-                                    <DropdownItem><h1 onClick={() => handleCategory("Pant")} >Pant</h1></DropdownItem>
+                                    <div onClick={() => handleCategory("T-Shirt")}><DropdownItem><h1>T-shirt</h1></DropdownItem></div>
+                                    <div onClick={() => handleCategory("Shirt")}><DropdownItem><h1 >Shirt</h1></DropdownItem></div>
+                                    <div onClick={() => handleCategory("Pant")}><DropdownItem><h1 >Pant</h1></DropdownItem></div>
                                     <Divider />
-                                    <DropdownItem><h1 onClick={() => handleCategory("Panjabi")} >Panjabi</h1></DropdownItem>
-                                    <DropdownItem><h1 onClick={() => handleCategory("Hoodie")} >Hoodie</h1></DropdownItem>
+                                    <div onClick={() => handleCategory("Panjabi")}><DropdownItem><h1 >Panjabi</h1></DropdownItem></div>
+                                    <div onClick={() => handleCategory("Hoodie")}><DropdownItem><h1 >Hoodie</h1></DropdownItem></div>
                                     <Divider />
-                                    <DropdownItem><h1 onClick={() => handleCategory("Joggers")} >Joggers</h1></DropdownItem>
+                                    <div onClick={() => handleCategory("Joggers")}><DropdownItem><h1 >Joggers</h1></DropdownItem></div>
                                 </DropdownList>
                             </DropdownContent>
                         </Dropdown>
@@ -90,7 +90,7 @@ const NavigationBar = () => {
                         <NavbarItem className='text-white'><h1 onClick={() => handleSubCategory("Woman's Product")}>Woman's Product</h1></NavbarItem>
 
                         <NavbarItem className='text-white'><h1 onClick={() => handleSubCategory("Kid's Product")}>Kid's Product</h1></NavbarItem>
-                        <NavbarItem className='text-black'><h1 onClick={()=>navigate('/contact')} className='text-white'>Contact</h1></NavbarItem>
+                        <NavbarItem className='text-black'><h1 onClick={() => navigate('/contact')} className='text-white'>Contact</h1></NavbarItem>
                     </NavbarList>
                     <div>
                         <NavbarBrand className='mx-5'>
@@ -148,14 +148,14 @@ const NavigationBar = () => {
                             <DropdownContent className='bg-white'>
                                 <DropdownList className='z-50'>
                                     <DropdownList>
-                                        <DropdownItem><h1 onClick={() => handleCategory("T-Shirt")} >T-shirt</h1></DropdownItem>
-                                        <DropdownItem><h1 onClick={() => handleCategory("Shirt")} >Shirt</h1></DropdownItem>
-                                        <DropdownItem><h1 onClick={() => handleCategory("Pant")} >Pant</h1></DropdownItem>
+                                        <div onClick={() => handleCategory("T-Shirt")}><DropdownItem><h1>T-shirt</h1></DropdownItem></div>
+                                        <div onClick={() => handleCategory("Shirt")}><DropdownItem><h1 >Shirt</h1></DropdownItem></div>
+                                        <div onClick={() => handleCategory("Pant")}><DropdownItem><h1 >Pant</h1></DropdownItem></div>
                                         <Divider />
-                                        <DropdownItem><h1 onClick={() => handleCategory("Panjabi")} >Panjabi</h1></DropdownItem>
-                                        <DropdownItem><h1 onClick={() => handleCategory("Hoodie")} >Hoodie</h1></DropdownItem>
+                                        <div onClick={() => handleCategory("Panjabi")}><DropdownItem><h1 >Panjabi</h1></DropdownItem></div>
+                                        <div onClick={() => handleCategory("Hoodie")}><DropdownItem><h1 >Hoodie</h1></DropdownItem></div>
                                         <Divider />
-                                        <DropdownItem><h1 onClick={() => handleCategory("Joggers")} >Joggers</h1></DropdownItem>
+                                        <div onClick={() => handleCategory("Joggers")}><DropdownItem><h1 >Joggers</h1></DropdownItem></div>
                                     </DropdownList>
                                 </DropdownList>
                             </DropdownContent>
@@ -165,7 +165,7 @@ const NavigationBar = () => {
                         <NavbarItem className='text-black'><h1 onClick={() => handleSubCategory("Woman's Product")}>Woman's Product</h1></NavbarItem>
                         <NavbarItem className='text-black'><h1 onClick={() => handleSubCategory("Kid's Product")}>Kid's Product</h1></NavbarItem>
                         <NavbarItem className='text-black'></NavbarItem>
-                        <NavbarItem className='text-black'><h1 onClick={()=>navigate('/contact')} className=''>Contact</h1></NavbarItem>
+                        <NavbarItem className='text-black'><h1 onClick={() => navigate('/contact')} className=''>Contact</h1></NavbarItem>
                     </NavbarCollapse>
                 </NavbarContainer>
             </Navbar>

@@ -70,7 +70,6 @@ const ProductDetails = () => {
     const totalPrice = parseInt(data.price) * number
     const images = data.images
     document.title = `${data.name}`
-    // console.log(data);
     return (
         <div className="bg-[#E0C6CB]">
             <div className="px-[75px] ">
@@ -82,7 +81,7 @@ const ProductDetails = () => {
                                 images.map((slide, i) => (
                                     <CarouselItem key={i} className="flex lg:flex-[0_0_50%]">
                                         <div className="flex items-center justify-center rounded-xl border border-metal-100 bg-metal-50 w-full h-[250px] lg:h-[750px] dark:border-metal-900 dark:bg-metal-900">
-                                            <img className="w-[350px] h-[250px] md:h-[450px] lg:h-[450px]" src={slide} alt="" />
+                                            <img className="w-[350px] lg:w-full h-[250px] md:h-[450px] lg:h-full object-cover" src={slide} alt="" />
                                         </div>
                                     </CarouselItem>
                                 ))}
@@ -93,7 +92,7 @@ const ProductDetails = () => {
                 <div className="flex justify-center">
                     <div className="mt-[50px] lg:mt-[-100px]">
                         <h1 className="text-2xl font-semibold">{data.name}</h1>
-                        <h1 className="text-3xl font-semibold text-white">Price: {data.price}/= Taka</h1>
+                        <h1 className="text-3xl font-semibold text-white">Price: {data.price}$</h1>
                     </div>
                 </div>
                 <div className="flex justify-center">
@@ -101,17 +100,6 @@ const ProductDetails = () => {
                         <div>
                             <h1 className="text-xl font-semibold my-2">Available Size: </h1>
                             <div>
-                                <label className="flex items-center space-x-2">
-                                    <input
-                                        type="radio"
-                                        value="S"
-                                        checked={selectedOption === "S"}
-                                        onChange={handleOptionChange}
-                                        className="form-radio h-5 w-5 text-blue-600"
-                                    />
-                                    <span className="text-lg">S</span>
-                                </label>
-
                                 <label className="flex items-center space-x-2">
                                     <input
                                         type="radio"
@@ -132,6 +120,17 @@ const ProductDetails = () => {
                                         className="form-radio h-5 w-5 text-blue-600"
                                     />
                                     <span className="text-lg">L</span>
+                                </label>
+
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="radio"
+                                        value="XL"
+                                        checked={selectedOption === "XL"}
+                                        onChange={handleOptionChange}
+                                        className="form-radio h-5 w-5 text-blue-600"
+                                    />
+                                    <span className="text-lg">XL</span>
                                 </label>
                             </div>
                         </div>
@@ -168,10 +167,12 @@ const ProductDetails = () => {
                                                         <ShoppingCart size={24} color="#4d4747" />
                                                         <Spinner color="info" size="lg" />
                                                     </div></Button> :
-                                                    <Button onClick={() => handleProduct(data)} className="bg-white w-[350px] rounded-full text-black hover:bg-black hover:text-white" ><div className="flex items-center gap-3">
-                                                        <ShoppingCart size={24} color="#4d4747" />
-                                                        <h1>Add to cart</h1>
-                                                    </div></Button>
+                                                    data?.available ?
+                                                        <Button onClick={() => handleProduct(data)} className="bg-white w-[350px] rounded-full text-black hover:bg-black hover:text-white" ><div className="flex items-center gap-3">
+                                                            <ShoppingCart size={24} color="#4d4747" />
+                                                            <h1>Add to cart</h1>
+                                                        </div></Button> :
+                                                        <h1 className="border border-red-500 p-2 text-red-500 rounded-lg">This product is out of stock now</h1>
                                             }
                                         </div> :
                                         <h1 className="text-red-600">Your account is terminated</h1>

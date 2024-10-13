@@ -86,6 +86,47 @@ const AllProducts = () => {
                 })
         }
     }
+    const [outStockTrueLoaing, setOutStockTrueIsLoading] = useState(false)
+    const handleOutStcokTrue = id => {
+        setOutStockTrueIsLoading(true)
+        const available = true;
+        const verify = { available };
+        fetch(`https://hayaecommerce-backend.vercel.app/allPost/stockouttrue/update/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(verify)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast.success(`Updated Successfully`)
+                setOutStockTrueIsLoading(false)
+                refetch()
+            })
+    }
+    const [outStockFalseLoaing, setOutStockFalseIsLoading] = useState(false)
+    const handleOutStcokFalse = id => {
+        setOutStockFalseIsLoading(true)
+        const available = false;
+        const verify = { available };
+        fetch(`https://hayaecommerce-backend.vercel.app/allPost/stockouttrue/update/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(verify)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast.success(`Updated Successfully`)
+                setOutStockFalseIsLoading(false)
+                refetch()
+            })
+    }
+
     const navigate = useNavigate()
 
 
@@ -117,7 +158,7 @@ const AllProducts = () => {
                                                             <Button className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white"><Spinner color="info" size="lg" /></Button> :
                                                             <Button onClick={() => handleDeleteButton(product?._id)} className="bg-red-500 rounded-full text-white font-bold hover:bg-[#CAAFAF] hover:text-white">Delete Post</Button>
                                                     }
-                                                    <Button onClick={()=> navigate(`/editpost/${product?._id}`)} className="bg-black rounded-full text-white font-bold hover:bg-white hover:text-black">Edit Post</Button>
+                                                    <Button onClick={() => navigate(`/editpost/${product?._id}`)} className="bg-black rounded-full text-white font-bold hover:bg-white hover:text-black">Edit Post</Button>
                                                     {
                                                         product?.featuredProduct &&
                                                             product?.featuredProduct ?
@@ -130,6 +171,18 @@ const AllProducts = () => {
                                                     }
 
                                                 </div>
+                                            </div>
+                                            <div>
+                                                {
+                                                    product?.available ?
+                                                        outStockFalseLoaing ?
+                                                            <Button><Spinner color="info" size="lg" /></Button>
+                                                            :
+                                                            <Button className="bg-yellow-400 rounded-full text-white font-bold hover:bg-white hover:text-black" onClick={() => handleOutStcokFalse(product?._id)}>Out of Stock</Button> :
+                                                        outStockTrueLoaing ?
+                                                            <Button><Spinner color="info" size="lg" /></Button> :
+                                                            <Button className="bg-green-400 rounded-full text-white font-bold hover:bg-white hover:text-black" onClick={() => handleOutStcokTrue(product?._id)}>Available on stock</Button>
+                                                }
                                             </div>
                                         </div>
                                     </div>

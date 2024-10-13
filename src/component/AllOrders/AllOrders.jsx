@@ -50,6 +50,7 @@ const AllOrders = () => {
                                     <h1 className="text-white text-lg lg:text-xl font-bold">Total : {product?.totalPrice}</h1>
                                     <h1 className="text-white text-lg lg:text-xl font-bold">Name : {product?.customerName}</h1>
                                     <h1 className="text-white text-lg lg:text-xl font-bold">Phone : {product?.userPhone}</h1>
+                                    <h1 className="text-white text-lg lg:text-xl font-bold">Size: {product?.size}</h1>
 
                                 </div>
                             </div>
